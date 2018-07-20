@@ -26,8 +26,6 @@
 
 (require 'helm-config)
 
-(require 'helm-ls-git)
-
 ;;(helm-mode t)
 
 (when (package-installed-p 'helm)
@@ -55,20 +53,6 @@
 
 ;; Run this if we can't find a package that we should.
 ;; (package-refresh-contents)
-
-;; ----------------------------------------------
-;; ARISTA
-;;
-(load-library "Arastra")
-
-;; Integration with a4, for checking files out and for
-   ;; compiling/running/debugging within emacs.
-(load-library "a4")
-
-;; So that Arista specific .el files are loaded.
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp")
-(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; Bug Mode
    (use-package "bug-mode"
@@ -117,6 +101,9 @@
 ;; ----------------------------------------------
 ;; DOOM THEMES
 ;;
+(use-package doom-themes
+  :ensure t)
+
 (require 'doom-themes)
 ;; Global settings (defaults)
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
@@ -133,6 +120,8 @@
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
+(use-package doom-modeline
+  :ensure t)
 (require 'doom-modeline)
 (doom-modeline-init)
 
@@ -197,5 +186,7 @@
   )
 
 (global-set-key (kbd "M-H") 'eshell-here)
+
+(setq inhibit-startup-screen t)
 
 (eshell)
