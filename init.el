@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
+(setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
+
 ;; ----------------------------------------------
 ;; PACKAGE MANAGEMENT
 ;;
@@ -16,6 +18,10 @@
 ;; From use-package readme.
 (eval-when-compile
   (require 'use-package))
+
+(add-to-list 'load-path "~/neotree")
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
 
 ;; ----------------------------------------------
 ;; HELM MODE
@@ -111,6 +117,11 @@
 ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
 ;; may have their own settings.
 (load-theme 'doom-one t)
+
+(set-face-attribute 'font-lock-builtin-face nil :foreground "#BA30FA")
+(set-face-attribute 'font-lock-function-name-face nil :foreground "#BA30FA")
+(set-face-attribute 'font-lock-variable-name-face nil :foreground "#BA30FA")
+
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
 ;; Enable custom neotree theme (all-the-icons must be installed!)
@@ -188,5 +199,13 @@
 (global-set-key (kbd "M-H") 'eshell-here)
 
 (setq inhibit-startup-screen t)
+
+(defun smash ()
+  (shell-command "/mnt/c/Users/Jugeeya/Documents/Games/cemu_1.11.0/cemu_1.11.0/Cemu.exe -g \"C:\\Users\\Jugeeya\\Documents\\Games\\SMASH4CEMUTESTING\\SM4SH\\code\\cross_f.rpx\"")
+  )
+
+;; MSC Syntax Highlight
+
+(load-file "~/.emacs.d/msc.el")
 
 (eshell)
